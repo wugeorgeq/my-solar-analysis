@@ -50,7 +50,7 @@ This is the **"minimum recommended" size Tesla's tool suggested** — the one ul
 - Installation: Included
 - Solar & Powerwall Discount: -$4,900
 - Solar Renewable Energy Credit: -$353
-- **No "5.88kW Discount" line** — unlike the 8.40kW system's extra -$840 size-based discount, this smaller system doesn't qualify for it. Confirmed this makes the 8.40kW system ~3.4% cheaper per watt on the panel line — that discount was already factored into the sizing comparison in `solar_decision_report.md`. (Post-correction: upsizing under the lease is -$6.50/mo at the current charging pattern, mildly positive (+$8/mo) with daytime EV charging — see report Part 3.)
+- **No "5.88kW Discount" line** — unlike the 8.40kW system's extra -$840 size-based discount, this smaller system doesn't qualify for it. Confirmed this makes the 8.40kW system ~3.4% cheaper per watt on the panel line — that discount was already factored into the sizing comparison in `solar_decision_report.md`. (Post-correction, rev 3: upsizing under the lease is -$6.50/mo at the current charging pattern, mildly positive (+$14/mo) with daytime EV charging — see report Part 3.)
 - **Cash Price: $27,970** (no separate taxes line shown, consistent with the Lease tab pattern seen at 8.40kW)
 - $500 upfront, **$152/mo** starting payment, 25yr term, 3%/yr escalator
 - **Optional buyout after 5 years: $19,028** (as quoted — subject to the same "fair market value, not fixed" caveat as the 8.40kW system's $24,208 figure above)

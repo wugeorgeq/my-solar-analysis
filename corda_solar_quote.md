@@ -55,6 +55,7 @@ Source: Corda Solar proposal PDF (local copy not included in this folder)
 5. Can they rerun the savings model against George's actual PG&E interval data (have real CSVs now) instead of the generic default rate plan?
 6. Can they provide a version of the projection at 4%/yr utility inflation instead of 6%?
 7. **NEW (top priority): real quote for a right-sized ~13-14 panel (~5.7-6.2kW) system + 1 Powerwall 3** — the decision report currently runs on a ~$23k estimate derived from this quote's per-watt pricing.
+8. **NEW (2026-08-15 rev 3): is the quoted price contingent on Corda successfully claiming 48E?** The begin-construction safe harbor (2026-07-04) has passed, so the system must be placed in service by 2027-12-31 and FEOC component-sourcing rules apply to the claim. Get in writing that the price doesn't change if the credit fails or is reduced.
 
 ## Capital allocation consideration (relevant to any recommendation)
 A $28-40k outlay is a meaningful sum to commit to a single illiquid asset for a decade-plus, worth weighing against other uses of that capital — this shapes the case for lower-capital-commitment options (lease) regardless of how the PPA/credit question resolves.

@@ -113,7 +113,9 @@ def shift_ev_load_to_midday(rows, midday_hours=(10, 11, 12, 13, 14), ev_threshol
     duplicate hour would double-count that hour's solar production. Modified rows keep their
     original 'cost' (so the baseline bill stays the real historical bill) but are flagged
     synthetic=True: their cost/usage ratio no longer means anything as a per-kWh rate, so
-    simulate() must price their imports at the month-hour average rate instead."""
+    simulate() must price their imports at the month-hour average rate instead — and must
+    EXCLUDE synthetic rows when building that average, or the corrupted ratios (original
+    cost / inflated midday usage, or full-EV-session cost / 1 kWh residual) pollute it."""
     by_day = defaultdict(list)
     for r in rows:
         by_day[r['date']].append(r)
@@ -142,16 +144,21 @@ def simulate(rows, system_kw, battery_capacity_kwh, prod_factor=PROD_FACTOR_DEFA
     baseline_annual_bill = sum(r['cost'] for r in rows if r['cost'])
     total_usage = sum(r['usage'] for r in rows)
 
+    # Rate table must be built from non-synthetic rows only: synthetic rows (from
+    # shift_ev_load_to_midday) keep their original cost against altered usage, so their
+    # cost/usage ratio is meaningless and would corrupt the month-hour averages.
     month_kwh = defaultdict(float)
     month_cost = defaultdict(float)
     for r in rows:
+        if r.get('synthetic'):
+            continue
         month_kwh[r['month']] += r['usage']
         month_cost[r['month']] += r['cost']
     month_avg_rate = {m: (month_cost[m] / month_kwh[m] if month_kwh[m] > 0 else 0.39) for m in range(1, 13)}
 
     hour_rate = defaultdict(lambda: defaultdict(list))
     for r in rows:
-        if r['usage'] > 0 and r['cost']:
+        if r['usage'] > 0 and r['cost'] and not r.get('synthetic'):
             hour_rate[r['month']][r['hour']].append(r['cost'] / r['usage'])
 
     def get_rate(m, h):
