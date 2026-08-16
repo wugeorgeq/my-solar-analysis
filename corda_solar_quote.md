@@ -14,7 +14,7 @@ Source: Corda Solar proposal PDF (local copy not included in this folder)
 
 **Pricing (Cash payment option, 2.9% cash/ACH discount already applied):**
 - Total System Price (gross, pre-credit): **$40,538**
-- 30% Federal Residential Clean Energy Credit: **$12,161.40** — ⚠️ proposal's own fine print says *"Eligibility requires enrollment in a Power Purchase Agreement as of 2026"* — UNRESOLVED whether this legitimately applies to a cash purchase. Section 25D (direct-purchase credit) was repealed effective 2025-12-31; only 48E (PPA/lease, third-party-owned) can claim a credit in 2026.
+- 30% Federal Residential Clean Energy Credit: **$12,161.40** — ✅ **RESOLVED (2026-08-15)**: the credit is legitimate. Structure confirmed: Corda holds the system in a 5-year lease/PPA (claiming the commercial 48E credit as owner, since 25D was repealed effective 2025-12-31) and passes the 30% through in the purchase price; ownership transfers to the customer at year 5 at **no additional cost — no hidden buyout**. Remaining diligence: get the $0-cost year-5 transfer in writing; a home sale within the first 5 years means assigning the agreement to the buyer.
 - Purchase Price (post-credit): **$28,376.60**
 - Demand Side Power Incentive (DSGS/VPP, estimated over life of battery, NOT guaranteed): $3,849.93 → recommend ~50% haircut to ~$1,925 (real DSGS earnings run $300-500/yr/battery, but 2026 program has new-enrollee eligibility constraints)
 - Net System Cost (per proposal): $24,526.67
@@ -41,18 +41,20 @@ Source: Corda Solar proposal PDF (local copy not included in this folder)
 - **6%/yr utility rate escalation assumed** — we modeled a more conservative 4%/yr as a gut check
 
 ## Our corrected/independent analysis
-- **If the 30% credit does NOT apply to cash** (true price $40,538 / $48,738): simple payback ≈ **16.9yr / 20.0yr** — closely matches our own independent model built before seeing this quote (15.6-18.6yr), which cross-validates both.
-- **If credit is real** (Purchase Price basis $28,376.60), with DSGS haircut 50% and 4%/yr inflation: payback ≈ **9.3 years** (Option 1)
+- ~~If the 30% credit does NOT apply to cash~~ — moot as of 2026-08-15: credit confirmed real via the 5-year lease-structure pass-through (see above).
+- **Credit confirmed real** (Purchase Price basis $28,376.60), with DSGS haircut 50% and 4%/yr inflation: payback ≈ **9.3 years** (Option 1)
+- **Note (2026-08-15): both quoted options are the 8.36kW size that `solar_decision_report.md` Part 3 recommends against.** Estimated right-sized price for ~5.7kW (13 panels) + 1 PW3, using this quote's own implied ~$2.97/W panel rate + $15.7k battery: ~$32.7k gross → **~$23k post-credit**. Estimate only — see new open question below.
 - **6% APR loan, no credit ($40,538 principal):** every term (10/15/20/25yr) has NEGATIVE monthly cash flow (-$250 to -$61/mo); true breakeven incl. interest ≈ 14-19 years
 - **6% APR loan, credit assumed real ($28,376.60 principal):** 20-25yr terms are near-breakeven-to-positive monthly cash flow from month one ($-3/mo at 20yr, +$17/mo at 25yr); total interest $20,415 (20yr) / $26,473 (25yr)
 
-## Open questions for Nathan (not yet answered)
-1. Does the $12,161/$14,621 credit genuinely require PPA enrollment? If so: what's the actual legal document type, who holds title, for how long?
-2. What's the year-6 buyout price/mechanism — fixed $0/nominal fee in writing, or "fair market value" determined later?
-3. How does third-party ownership (if applicable) interact with the planned $3k roof/gutter work, or a future home sale?
+## Open questions for Nathan
+1. ~~Does the credit genuinely require PPA enrollment?~~ ✅ RESOLVED: yes — 5-year lease/PPA structure, Corda claims 48E and passes the 30% through; ownership transfers at year 5.
+2. ~~Year-6 buyout price/mechanism?~~ ✅ RESOLVED: no buyout — quoted price is all-in, transfer at no additional cost. (Still get this in writing.)
+3. ~~Third-party ownership vs. roof work / home sale?~~ Partially resolved: roof confirmed in good condition, so no near-term conflict; a home sale within the first 5 years would require assigning the agreement to the buyer — ask what that process looks like if it becomes relevant.
 4. How reliable is the DSGS estimate given the 2026 program's new-enrollee constraints (Emergency Dispatch suspended, storage VPP limited to Oct-2025 participants)?
 5. Can they rerun the savings model against George's actual PG&E interval data (have real CSVs now) instead of the generic default rate plan?
 6. Can they provide a version of the projection at 4%/yr utility inflation instead of 6%?
+7. **NEW (top priority): real quote for a right-sized ~13-14 panel (~5.7-6.2kW) system + 1 Powerwall 3** — the decision report currently runs on a ~$23k estimate derived from this quote's per-watt pricing.
 
 ## Capital allocation consideration (relevant to any recommendation)
 A $28-40k outlay is a meaningful sum to commit to a single illiquid asset for a decade-plus, worth weighing against other uses of that capital — this shapes the case for lower-capital-commitment options (lease) regardless of how the PPA/credit question resolves.

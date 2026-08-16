@@ -106,22 +106,30 @@ def build_month_hour_shape():
 
 def shift_ev_load_to_midday(rows, midday_hours=(10, 11, 12, 13, 14), ev_threshold=EV_THRESHOLD_KWH):
     """Returns a new rows list with EV-like load (> ev_threshold kWh/hr) moved to midday hours,
-    approximating 'what if EV charging happened during peak solar production instead'."""
+    approximating 'what if EV charging happened during peak solar production instead'.
+
+    The moved load is MERGED into the existing midday rows (never appended as extra rows) so
+    each (date, hour) appears exactly once — simulate() computes production per row, so a
+    duplicate hour would double-count that hour's solar production. Modified rows keep their
+    original 'cost' (so the baseline bill stays the real historical bill) but are flagged
+    synthetic=True: their cost/usage ratio no longer means anything as a per-kWh rate, so
+    simulate() must price their imports at the month-hour average rate instead."""
     by_day = defaultdict(list)
     for r in rows:
         by_day[r['date']].append(r)
     shifted = []
     for day, day_rows in by_day.items():
         ev_total = sum(r['usage'] - 1.0 for r in day_rows if r['usage'] > ev_threshold)
-        for r in day_rows:
+        per_hour = ev_total / len(midday_hours) if ev_total > 0 else 0.0
+        for r in sorted(day_rows, key=lambda x: x['hour']):
             r2 = dict(r)
             if r2['usage'] > ev_threshold:
                 r2['usage'] = 1.0
+                r2['synthetic'] = True
+            if per_hour and r2['hour'] in midday_hours:
+                r2['usage'] += per_hour
+                r2['synthetic'] = True
             shifted.append(r2)
-        if ev_total > 0:
-            per_hour = ev_total / len(midday_hours)
-            for h in midday_hours:
-                shifted.append({'date': day, 'month': day_rows[0]['month'], 'hour': h, 'usage': per_hour, 'cost': 0})
     return shifted
 
 
@@ -163,7 +171,7 @@ def simulate(rows, system_kw, battery_capacity_kwh, prod_factor=PROD_FACTOR_DEFA
         day_total = annual_production * MONTH_WEIGHT[m] / DAYS_IN_MONTH[m]
         prod = day_total * month_hour_shape[m][h]
         load = r['usage']
-        if use_real_hourly_rate and load > 0 and r['cost']:
+        if use_real_hourly_rate and load > 0 and r['cost'] and not r.get('synthetic'):
             rate = r['cost'] / load
         else:
             rate = get_rate(m, h)
@@ -203,7 +211,10 @@ def simulate(rows, system_kw, battery_capacity_kwh, prod_factor=PROD_FACTOR_DEFA
 if __name__ == '__main__':
     rows = load_usage()
     print(f"Loaded {len(rows)} hourly rows from {ELEC_CSV_DEFAULT}")
+    shifted = shift_ev_load_to_midday(rows)
     for kw, cap in [(5.88, 13.5), (8.40, 13.5)]:
         res = simulate(rows, kw, cap)
         print(f"{kw}kW + {cap}kWh battery: new bill ${res['new_bill']:.0f}/yr, "
               f"savings ${res['savings']:.0f}/yr, offset {res['offset_pct']:.0f}%")
+        res_s = simulate(shifted, kw, cap)
+        print(f"  ... with EV charging shifted to midday: new bill ${res_s['new_bill']:.0f}/yr")

@@ -50,7 +50,7 @@ This is the **"minimum recommended" size Tesla's tool suggested** — the one ul
 - Installation: Included
 - Solar & Powerwall Discount: -$4,900
 - Solar Renewable Energy Credit: -$353
-- **No "5.88kW Discount" line** — unlike the 8.40kW system's extra -$840 size-based discount, this smaller system doesn't qualify for it. Confirmed this makes the 8.40kW system ~3.4% cheaper per watt on the panel line — but that discount was already factored into the sizing comparison in `solar_decision_report.md`, and upsizing was still a net loss under the lease even accounting for it.
+- **No "5.88kW Discount" line** — unlike the 8.40kW system's extra -$840 size-based discount, this smaller system doesn't qualify for it. Confirmed this makes the 8.40kW system ~3.4% cheaper per watt on the panel line — that discount was already factored into the sizing comparison in `solar_decision_report.md`. (Post-correction: upsizing under the lease is -$6.50/mo at the current charging pattern, mildly positive (+$8/mo) with daytime EV charging — see report Part 3.)
 - **Cash Price: $27,970** (no separate taxes line shown, consistent with the Lease tab pattern seen at 8.40kW)
 - $500 upfront, **$152/mo** starting payment, 25yr term, 3%/yr escalator
 - **Optional buyout after 5 years: $19,028** (as quoted — subject to the same "fair market value, not fixed" caveat as the 8.40kW system's $24,208 figure above)
@@ -67,8 +67,7 @@ This is the **"minimum recommended" size Tesla's tool suggested** — the one ul
 ## Key comparisons run so far
 - **Finance (pay off at yr5, $45,692.83) vs. Lease+buyout (as quoted, $36,812.83)**: Lease path is $8,880 cheaper at face value. Even worst-case buyout (+30%) still favors Lease, but only by ~$1,618 — margin nearly disappears under realistic buyout inflation.
 - **Implied effective APR of Lease+buyout path (financing $33,988 over 5yr via payments+balloon): ~1.58%**, vs. Finance's stated 7.24% — likely because Tesla (as lessor) captures the 30% commercial (48E) credit during the lease and passes some value through via the payment/buyout structure. Same mechanism as Corda's PPA-linked credit.
-- **Corda cash ($28,376.60) vs. Tesla Lease+buyout**: if Corda's price is genuinely all-in with no separate later buyout, Corda is $8,436 (vs. quoted Tesla buyout) to $15,698 (vs. worst-case Tesla buyout) cheaper. **Unconfirmed and important**: since Corda's credit is also PPA-linked (per the disclaimer flagged in `corda_solar_quote.md`), it's unknown whether Corda's $28,377 already includes full ownership transfer or whether a separate buyout payment is due later, same as Tesla's structure. This needs to be asked directly, same as the existing open questions for Nathan.
+- **Corda cash ($28,376.60) vs. Tesla Lease+buyout**: ✅ **RESOLVED (2026-08-15)** — Corda's price is genuinely all-in: 5-year lease/PPA structure to capture the 48E credit, then ownership transfers at no additional cost, no separate buyout. That makes Corda $8,436 (vs. quoted Tesla buyout) to $15,698 (vs. worst-case Tesla buyout) cheaper at the 8.36/8.40kW size — and at the recommended smaller size, Corda's estimated ~$23k beats the Tesla 5.88kW lease+buyout path (~$29.2k) by ~$6k. Caveat: apples-to-apples requires Corda's real quote at 13-14 panels (open question #7 in `corda_solar_quote.md`).
 
-## Open questions this raises for Corda (add to existing list)
-- Does the $28,376.60 "cash" price include full, no-additional-cost ownership transfer, or is there a separate buyout payment due at the end of the PPA/recapture period (mirroring Tesla's Lease buyout)?
-- If there is a later buyout, what is it, and is it contractually fixed or "fair market value" (same red flag as Tesla's)?
+## Open questions this raises for Corda
+- ~~Does the $28,376.60 "cash" price include full ownership transfer, or is a buyout due later?~~ ✅ RESOLVED: all-in, no hidden buyout; transfer at no cost after the 5-year credit-capture period. Get the $0-cost transfer in writing.
